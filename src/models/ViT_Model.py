@@ -1,7 +1,7 @@
 from collections import OrderedDict
 import torch
 from torch import nn
-import torch.utils.checkpoint as checkpoint
+from torchvision import transforms
 
 """
 Code is based on the OpenAI CLIP repository: https://github.com/openai/CLIP/blob/main/clip/model.py
@@ -112,6 +112,8 @@ def create_model(model_name="ViT-L", check_pth=None):
                     heads=16 ,
                     output_dim=768
                 )
+        image_size = 336
+
     elif model_name == "ViT-B":
         vit_model = VisionTransformer(
                     input_resolution=224,
@@ -121,6 +123,7 @@ def create_model(model_name="ViT-L", check_pth=None):
                     heads=12,
                     output_dim=512
                     )
+        image_size = 224
 
     model = EmbeddingModel(vit_model, False)
     if check_pth is not None:
@@ -129,6 +132,17 @@ def create_model(model_name="ViT-L", check_pth=None):
     model.half()
     model.backbone.half()
     model.eval()
-    return model
+
+    
+    resize_to = int(image_size * 1.125)
+    ppc_fn = transforms.Compose([
+                transforms.Resize((resize_to, resize_to),  transforms.InterpolationMode.BILINEAR),
+                transforms.CenterCrop(image_size),
+                transforms.ToTensor(),
+                transforms.Normalize((0.4850, 0.4560, 0.4060), (0.2290, 0.2240, 0.2250)),
+                transforms.ConvertImageDtype(torch.float16)
+            ])
+
+    return model, ppc_fn
 
      
