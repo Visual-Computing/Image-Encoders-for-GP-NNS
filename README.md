@@ -33,7 +33,7 @@ jupyter notebook
 | CLIP ViT-L/14@336 | ~180         | ArcMargin       | 77.3                    | [checkpoint](https://visual-computing.com/files/GPNNS/GPNNS_ViTL.pth)   |
 
 # Using our models
-An example on how to use our finetuned models for inference is shown in this [notebook](./notebooks/General-Purpose-Embedding%20ViT.ipynb)
+An example on how to use our finetuned models for inference is shown in this [notebook](./notebooks/General-Purpose-Embedding%20ViT.ipynb). Download the checkpoints and follow the Setup above, then open the "ipynb" file in the "notebook" directory using the Jupyter Notebook webseite. Edit the code in the notebook and run the code cells.
 
 # Evaluation
 Coming Soon
