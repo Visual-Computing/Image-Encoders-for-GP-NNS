@@ -15,16 +15,24 @@ models for image retrieval.
 CLIP pre-trained text-to-image models perform best in this benchmark. Their performance can further be significantly increased trough a general-purpose retrieval specific  fine-tuning:
 ![General-purpose finetuning improves retrieval results](./images/results_table.JPG)
 
-# Environment
-`pip install -r requirements.txt`
+# Setup
+We recommand to use [Anaconda](https://www.anaconda.com/) and use the following commands in a console to setup a virtual environment and install the nessesary dependencies.  
+```
+conda create -n gpret  
+conda activate gpret  
+conda install notebook pytorch::pytorch=1.13.1 pytorch::torchvision=0.14.1  
+git clone https://github.com/Visual-Computing/Image-Encoders-for-GP-NNS.git  
+cd Image-Encoders-for-GP-NNS/  
+jupyter notebook  
+```
 
 # Model Checkpoints
 | Base Model        | GFLOPs/image | Fine-tuning Loss | Average Benchmark Score | Link |
 |-------------------|--------------|-----------------|-------------------------|------|
-| CLIP ViT-B/16@224 | ~20          | ArcMargin       | 67.9                    | [checkpoint](https://visual-computing.com/files/GPNNS/GPNNS_ViTB.pth)     |
-| CLIP ViT-L/14@336 | ~180         | ArcMargin       | 77.3                    |   [checkpoint](https://visual-computing.com/files/GPNNS/GPNNS_ViTL.pth)   |
+| CLIP ViT-B/16@224 | ~20          | ArcMargin       | 67.9                    | [checkpoint](https://visual-computing.com/files/GPNNS/GPNNS_ViTB.pth)   |
+| CLIP ViT-L/14@336 | ~180         | ArcMargin       | 77.3                    | [checkpoint](https://visual-computing.com/files/GPNNS/GPNNS_ViTL.pth)   |
 
-# Inference
+# Using our models
 An example on how to use our finetuned models for inference is shown in this [notebook](./notebooks/General-Purpose-Embedding%20ViT.ipynb)
 
 # Evaluation
